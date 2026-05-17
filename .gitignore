@@ -105,3 +105,26 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Ignore heavy image and audio files in Assets/Art and Assets/Audio (keep .meta files tracked)
+/Assets/Art/**/*.png
+/Assets/Art/**/*.jpg
+/Assets/Art/**/*.jpeg
+/Assets/Art/**/*.tga
+/Assets/Art/**/*.psd
+/Assets/Art/**/*.bmp
+/Assets/Art/**/*.exr
+/Assets/Art/**/*.hdr
+/Assets/Art/**/*.gif
+/Assets/Art/**/*.webp
+/Assets/Art/**/*.svg
+/Assets/Art/**/*.mp4
+
+/Assets/Audio/**/*.wav
+/Assets/Audio/**/*.mp3
+/Assets/Audio/**/*.ogg
+/Assets/Audio/**/*.aif
+/Assets/Audio/**/*.aiff
+/Assets/Audio/**/*.flac
+/Assets/Audio/**/*.aac
+/Assets/Audio/**/*.wma
