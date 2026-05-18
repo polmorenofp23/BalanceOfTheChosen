@@ -48,15 +48,19 @@ public class Anakin : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("PowerUp"))
+        if (collision.gameObject.CompareTag("ObjectCollectible"))
         {
-            Debug.Log("Triangle has been collided with " + collision.gameObject.name);
+            Debug.Log("Collectible has been collided with " + collision.gameObject.name);
             Destroy(collision.gameObject);
-            DamagePlayer(10);
+        } else if (collision.gameObject.CompareTag("Hazard"))
+        {
+            Debug.Log("Hazard has been collided with " + collision.gameObject.name);
+            Destroy(collision.gameObject);
+            DamagePlayer(1);
         }
     }
 
-    void DamagePlayer(int damage = 10)
+    void DamagePlayer(int damage = 1)
     {
         life -= damage;
         Debug.Log("Player life: " + life);
