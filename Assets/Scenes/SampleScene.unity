@@ -325,13 +325,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: collectible-kyber-purple
       objectReference: {fileID: 0}
+    - target: {fileID: 4280366328378523426, guid: 4df38cf21613bd141a55acbb1cf8f093, type: 3}
+      propertyPath: m_TagString
+      value: ObjectInteractablePurple
+      objectReference: {fileID: 0}
     - target: {fileID: 4411896440886141871, guid: 4df38cf21613bd141a55acbb1cf8f093, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.878
+      value: -7.094
       objectReference: {fileID: 0}
     - target: {fileID: 4411896440886141871, guid: 4df38cf21613bd141a55acbb1cf8f093, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.406
+      value: 2.309
       objectReference: {fileID: 0}
     - target: {fileID: 4411896440886141871, guid: 4df38cf21613bd141a55acbb1cf8f093, type: 3}
       propertyPath: m_LocalPosition.z
@@ -496,13 +500,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: collectible-kyber-blue
       objectReference: {fileID: 0}
+    - target: {fileID: 7277729356947682793, guid: 5c6ef18f0d377434289ab07995df6606, type: 3}
+      propertyPath: m_TagString
+      value: ObjectInteractableBlue
+      objectReference: {fileID: 0}
     - target: {fileID: 7521513944933230374, guid: 5c6ef18f0d377434289ab07995df6606, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.6380963
+      value: -8.085
       objectReference: {fileID: 0}
     - target: {fileID: 7521513944933230374, guid: 5c6ef18f0d377434289ab07995df6606, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3850105
+      value: 2.335
       objectReference: {fileID: 0}
     - target: {fileID: 7521513944933230374, guid: 5c6ef18f0d377434289ab07995df6606, type: 3}
       propertyPath: m_LocalPosition.z
@@ -610,13 +618,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: collectible-kyber-red
       objectReference: {fileID: 0}
+    - target: {fileID: 3860094071595930808, guid: b1737ffbcf97c8546be3220baf1ed9da, type: 3}
+      propertyPath: m_TagString
+      value: ObjectInteractableRed
+      objectReference: {fileID: 0}
     - target: {fileID: 8231735502628307269, guid: b1737ffbcf97c8546be3220baf1ed9da, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.111
+      value: -6.086
       objectReference: {fileID: 0}
     - target: {fileID: 8231735502628307269, guid: b1737ffbcf97c8546be3220baf1ed9da, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.468
+      value: 2.297
       objectReference: {fileID: 0}
     - target: {fileID: 8231735502628307269, guid: b1737ffbcf97c8546be3220baf1ed9da, type: 3}
       propertyPath: m_LocalPosition.z
