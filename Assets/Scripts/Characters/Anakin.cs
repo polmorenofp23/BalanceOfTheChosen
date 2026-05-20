@@ -4,17 +4,23 @@ using UnityEngine.InputSystem;
 public class Anakin : MonoBehaviour
 {
     [SerializeField]
-    private int life = 100;
+    private int life = 1;
+
+    private Animator animator;
+    private bool isDead;
+    private static readonly int SpeedParam = Animator.StringToHash("Speed");
+    private static readonly int JumpParam = Animator.StringToHash("Jump");
+    private static readonly int DieParam = Animator.StringToHash("Die");
+
     public float moveSpeed = 5f;
     public float jumpForce = 6f;
     public Rigidbody2D rb;
     public Vector2 moveInput;
     public bool jumpPressed = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -25,10 +31,17 @@ public class Anakin : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        animator.SetFloat(SpeedParam, Mathf.Abs(moveInput.x));
         if (jumpPressed)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            animator.SetTrigger(JumpParam);
             jumpPressed = false;
         }
     }
@@ -62,14 +75,26 @@ public class Anakin : MonoBehaviour
 
     void DamagePlayer(int damage = 1)
     {
+        if (isDead)
+        {
+            return;
+        }
+
         life -= damage;
         Debug.Log("Player life: " + life);
         if (life <= 0)
         {
-            GameObject.Find("SceneManager").GetComponent<SceneManage>().LoadCustomScene("GameOver");
-            Debug.Log("Player has died");
-            Destroy(gameObject);
+            isDead = true;
+            animator.SetTrigger(DieParam);
+            Invoke(nameof(LoadGameOver), 0.25f);
         }
+    }
+
+    void LoadGameOver()
+    {
+        GameObject.Find("SceneManager").GetComponent<SceneManage>().LoadCustomScene("GameOver");
+        Debug.Log("Player has died");
+        Destroy(gameObject);
     }
 }
 
