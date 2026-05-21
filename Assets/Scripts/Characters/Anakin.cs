@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Anakin : MonoBehaviour
 {
@@ -7,13 +8,18 @@ public class Anakin : MonoBehaviour
     private int life = 1;
 
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private bool isDead;
+    private bool isGrounded = true;
+    public int blueKyberCrystalsCollected = 0;
+    public int purpleKyberCrystalsCollected = 0;
+    public bool hologramCollected = false;
     private static readonly int SpeedParam = Animator.StringToHash("Speed");
     private static readonly int JumpParam = Animator.StringToHash("Jump");
     private static readonly int DieParam = Animator.StringToHash("Die");
 
     public float moveSpeed = 5f;
-    public float jumpForce = 6f;
+    public float jumpForce = 5f;
     public Rigidbody2D rb;
     public Vector2 moveInput;
     public bool jumpPressed = false;
@@ -21,6 +27,7 @@ public class Anakin : MonoBehaviour
     void Awake()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,8 +43,20 @@ public class Anakin : MonoBehaviour
             return;
         }
 
+        if (moveInput.x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (moveInput.x > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+
+        bool isInAir = Mathf.Abs(rb.linearVelocity.y) > 0.01f;
+        float horizontalSpeed = Mathf.Abs(moveInput.x * moveSpeed);
+        animator.speed = !isInAir && horizontalSpeed > 0f ? horizontalSpeed : 1f;
+
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-        animator.SetFloat(SpeedParam, Mathf.Abs(moveInput.x));
         if (jumpPressed)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -49,23 +68,50 @@ public class Anakin : MonoBehaviour
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+        animator.SetFloat(SpeedParam, Mathf.Abs(moveInput.x));
     }
 
     public void OnJump(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && isGrounded)
         {
             jumpPressed = true;
+            isGrounded = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        for (int i = 0; i < collision.contactCount; i++)
+        {
+            if (collision.GetContact(i).normal.y > 0.5f)
+            {
+                isGrounded = true;
+                break;
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ObjectCollectible"))
+        if (collision.gameObject.CompareTag("ObjectsCollectibles"))
         {
-            Debug.Log("Collectible has been collided with " + collision.gameObject.name);
+            hologramCollected = true;
             Destroy(collision.gameObject);
-        } else if (collision.gameObject.CompareTag("Hazard"))
+        }
+        else if (collision.gameObject.CompareTag("ObjectCollectibleBlue") || collision.gameObject.CompareTag("ObjectCollectiblePurple"))
+        {
+            if (collision.gameObject.CompareTag("ObjectCollectibleBlue"))
+            {
+                blueKyberCrystalsCollected++;
+            }
+            else if (collision.gameObject.CompareTag("ObjectCollectiblePurple"))
+            {
+                purpleKyberCrystalsCollected++;
+            }
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("HazardRed") || collision.gameObject.CompareTag("HazardGreen"))
         {
             Debug.Log("Hazard has been collided with " + collision.gameObject.name);
             Destroy(collision.gameObject);
@@ -92,7 +138,7 @@ public class Anakin : MonoBehaviour
 
     void LoadGameOver()
     {
-        GameObject.Find("SceneManager").GetComponent<SceneManage>().LoadCustomScene("GameOver");
+        SceneManager.LoadScene("GameOver");
         Debug.Log("Player has died");
         Destroy(gameObject);
     }
