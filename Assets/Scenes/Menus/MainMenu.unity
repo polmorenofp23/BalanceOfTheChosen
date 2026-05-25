@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 1970321809}
   - component: {fileID: 1970321812}
   m_Layer: 5
-  m_Name: Button
+  m_Name: LoadFirstLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -797,6 +797,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8157364335fcca64185cc6415105b629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneManage
+  currentLevel: 1
+  nextLevel: 2
 --- !u!1 &2071866076
 GameObject:
   m_ObjectHideFlags: 0
@@ -809,7 +811,7 @@ GameObject:
   - component: {fileID: 2071866077}
   m_Layer: 0
   m_Name: titlebg_0
-  m_TagString: Untagged
+  m_TagString: Backgrounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -859,8 +861,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 65231891
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 2298072782202708730, guid: d4afd34e1905ef948a9c5b71956dd8b9, type: 3}
