@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class ControladorPuerta : MonoBehaviour
 {
     [Header("Configuración de la Puerta")]
-    [Tooltip("Escribe 'Azul' o 'Morado' según la puerta")]
+    [Tooltip("Escribe 'Azul', 'Rojo' o 'Morado' según la puerta")]
     public string colorPuerta = "Azul";
     public int cristalesNecesarios = 4;
-    public string nombreSiguienteEscena = "LevelCompleted";
+    public string nombreSiguienteEscena = "LevelCompleted"; // Ajustado a tu nueva escena
 
     [Header("Gráficos")]
     public Sprite puertaCerrada;
@@ -29,44 +29,63 @@ public class ControladorPuerta : MonoBehaviour
     {
         if (collision.CompareTag("Characters") && !jugadorEnPosicion)
         {
-            Anakin scriptJugador = collision.GetComponent<Anakin>();
+            // Buscamos si el que ha tocado la puerta es Anakin o Vader
+            Anakin scriptAnakin = collision.GetComponent<Anakin>();
+            Vader scriptVader = collision.GetComponent<Vader>();
 
-            if (scriptJugador != null)
+            int cristalesDelJugador = 0;
+            bool jugadorValido = false;
+
+            // 1. Si es Anakin y la puerta es Azul
+            if (scriptAnakin != null && colorPuerta == "Azul")
             {
-                int cristalesDelJugador = 0;
+                cristalesDelJugador = scriptAnakin.blueKyberCrystalsCollected;
+                jugadorValido = true;
+            }
+            // 2. Si es Vader y la puerta es Roja
+            else if (scriptVader != null && colorPuerta == "Rojo")
+            {
+                cristalesDelJugador = scriptVader.redKyberCrystalsCollected;
+                jugadorValido = true;
+            }
+            // 3. (Opcional) Si usáis la puerta Morada para Anakin
+            else if (scriptAnakin != null && colorPuerta == "Morado")
+            {
+                cristalesDelJugador = scriptAnakin.purpleKyberCrystalsCollected;
+                jugadorValido = true;
+            }
+            // 4. (Opcional) Si usáis la puerta Morada para Vader
+            else if (scriptVader != null && colorPuerta == "Morado")
+            {
+                cristalesDelJugador = scriptVader.purpleKyberCrystalsCollected;
+                jugadorValido = true;
+            }
 
-                if (colorPuerta == "Azul")
+            // Si el jugador que ha tocado no coincide con el color de su puerta, no hacemos nada
+            if (!jugadorValido) return;
+
+            if (cristalesDelJugador >= cristalesNecesarios)
+            {
+                jugadorEnPosicion = true;
+                puertasListas++;
+                spriteRenderer.sprite = puertaAbierta;
+
+                if (SoundManager.Instance != null)
                 {
-                    cristalesDelJugador = scriptJugador.blueKyberCrystalsCollected;
+                    SoundManager.Instance.PlayDoor();
                 }
-                else if (colorPuerta == "Morado")
+
+                Debug.Log("Jugador en la puerta " + colorPuerta + ". Puertas listas: " + puertasListas);
+
+                if (puertasListas >= 2)
                 {
-                    cristalesDelJugador = scriptJugador.purpleKyberCrystalsCollected;
+                    Debug.Log("¡Ambos jugadores listos! Cargando siguiente nivel...");
+                    Invoke(nameof(CargarSiguienteNivel), 1f);
                 }
-
-                if (cristalesDelJugador >= cristalesNecesarios)
-                {
-                    jugadorEnPosicion = true;
-                    puertasListas++;
-                    spriteRenderer.sprite = puertaAbierta;
-
-                    if (SoundManager.Instance != null)
-                    {
-                        SoundManager.Instance.PlayDoor();
-                    }
-
-                    Debug.Log("Jugador en la puerta " + colorPuerta + ". Puertas listas: " + puertasListas);
-
-                    if (puertasListas >= 2)
-                    {
-                        Debug.Log("¡Ambos jugadores listos! Cargando siguiente nivel...");
-                        Invoke(nameof(CargarSiguienteNivel), 1f);
-                    }
-                }
-                else
-                {
-                    Debug.Log("Acceso denegado en puerta " + colorPuerta + ". Tienes " + cristalesDelJugador + " de " + cristalesNecesarios + " cristales.");
-                }
+            }
+            else
+            {
+                Debug.Log("Acceso denegado en puerta " + colorPuerta + ". Tienes " + cristalesDelJugador + " de " + cristalesNecesarios + " cristales.");
             }
         }
     }

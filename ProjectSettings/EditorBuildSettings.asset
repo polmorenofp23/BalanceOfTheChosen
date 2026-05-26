@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/GameOver.unity
     guid: 05fd0ec6be254e94180b239f561ae92a
   - enabled: 1
+    path: Assets/Scenes/Menus/LevelCompleted.unity
+    guid: 27a9c229aad1316458fd7c9192b42e85
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
@@ -30,17 +33,35 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Level1.unity
     guid: 75f6d1c7e4843a04ab5d9b3533bc0f44
   - enabled: 1
+    path: Assets/Scenes/Levels/Level2Intro.unity
+    guid: 39d800aef7c34584b8150ff799df3c28
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 6b5a0e6ed7d904643a3d27b9842c3838
+  - enabled: 1
     path: Assets/Scenes/Levels/Level2-old.unity
     guid: a1e9bd3f732724740a57a82e17766e1d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3Intro.unity
+    guid: c3199a877ca5b604d8c6877f3a767e3b
   - enabled: 1
     path: Assets/Scenes/Levels/Level3.unity
     guid: c8ab2ae2b5e14234e938a79ea06fc09f
   - enabled: 1
+    path: Assets/Scenes/Levels/Level4Intro.unity
+    guid: c2b617b4a606dc44b9b662ce24aef131
+  - enabled: 1
     path: Assets/Scenes/Levels/Level4.unity
     guid: d0c04dbbdeaa78146919b418ca96c724
   - enabled: 1
+    path: Assets/Scenes/Levels/Level5Intro.unity
+    guid: bbafc62a12ff4984481a498787a95e25
+  - enabled: 1
     path: Assets/Scenes/Levels/Level5.unity
     guid: 5a0e09c8c0661f54399033b069ecacc2
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level6Intro.unity
+    guid: 1513d21f1a1adc84aafebbdf2e104fca
   - enabled: 1
     path: Assets/Scenes/Levels/Level6.unity
     guid: c868997a951894745a4ebfcec9cda68a

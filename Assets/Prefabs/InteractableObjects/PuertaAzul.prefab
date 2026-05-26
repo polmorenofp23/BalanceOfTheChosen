@@ -153,6 +153,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ControladorPuerta
   colorPuerta: Azul
   cristalesNecesarios: 4
-  nombreSiguienteEscena: MenuPrincipal
+  nombreSiguienteEscena: LevelCompleted
   puertaCerrada: {fileID: -8969539002113790214, guid: 6e0d2bb3fad3095429791ef6388a3504, type: 3}
   puertaAbierta: {fileID: 8301624954765076550, guid: 416f20fc0375aa04485ef02150cb997a, type: 3}

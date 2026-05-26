@@ -13,6 +13,10 @@ PrefabInstance:
       value: PuertaRoja
       objectReference: {fileID: 0}
     - target: {fileID: 3416505918047653257, guid: 6a18cf39b812ec84987618009eab8efd, type: 3}
+      propertyPath: colorPuerta
+      value: Rojo
+      objectReference: {fileID: 0}
+    - target: {fileID: 3416505918047653257, guid: 6a18cf39b812ec84987618009eab8efd, type: 3}
       propertyPath: puertaAbierta
       value: 
       objectReference: {fileID: 2561338516674872358, guid: 1c224fc5686599f4ebbaf7b4af78d2f6, type: 3}
