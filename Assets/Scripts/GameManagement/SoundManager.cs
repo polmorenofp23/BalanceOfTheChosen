@@ -14,7 +14,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip crystalSound;
     public AudioClip hologramSound;
     public AudioClip doorOpenSound;
-    public AudioClip doorCloseSound; // NUEVO: Sonido de cerrar
+    public AudioClip doorCloseSound;
 
     private void Awake()
     {
@@ -34,7 +34,7 @@ public class SoundManager : MonoBehaviour
     public void PlayHologram() => sfxSource.PlayOneShot(hologramSound);
     public void PlayLand() => sfxSource.PlayOneShot(landSound);
     public void PlayDoor() => sfxSource.PlayOneShot(doorOpenSound);
-    public void PlayDoorClose() => sfxSource.PlayOneShot(doorCloseSound); // NUEVO
+    public void PlayDoorClose() => sfxSource.PlayOneShot(doorCloseSound);
 
     // --- MÉTODOS PARA SONIDO CONTINUO (PASOS) ---
     public void PlayWalk()

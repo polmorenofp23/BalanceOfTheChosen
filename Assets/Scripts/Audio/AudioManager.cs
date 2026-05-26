@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     [SerializeField] private AudioSource musicSource; // Para la música de fondo
-    //[SerializeField] private AudioSource sfxSource;   // Para los efectos de sonido
+    [SerializeField] private AudioSource sfxSource;   // Para los efectos de sonido
 
     private void Awake()
     {
@@ -21,9 +21,17 @@ public class AudioManager : MonoBehaviour
     }
 
     // --- Funciones para la Música ---
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(AudioClip clip, bool loop = true)
     {
+        if (clip == null)
+        {
+            Debug.LogWarning("AudioManager: PlayMusic called with a null clip");
+            return;
+        }
+
+        musicSource.Stop();
         musicSource.clip = clip;
+        musicSource.loop = loop;
         musicSource.Play();
     }
 
@@ -42,9 +50,9 @@ public class AudioManager : MonoBehaviour
         musicSource.Stop();
     }
 
-    // // --- Funciones para los Efectos de Sonido (SFX) ---
-    // public void PlaySFX(AudioClip clip)
-    // {
-    //     sfxSource.PlayOneShot(clip);
-    // }
+    // --- Funciones para los Efectos de Sonido (SFX) ---
+    public void PlaySFX(AudioClip clip)
+    {
+        sfxSource.PlayOneShot(clip);
+    }
 }

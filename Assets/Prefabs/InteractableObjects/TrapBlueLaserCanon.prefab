@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrapBlueLaserCanon
       objectReference: {fileID: 0}
+    - target: {fileID: 5461475775393582453, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
+      propertyPath: rayoLaser
+      value: 
+      objectReference: {fileID: 9005289289258721505}
     - target: {fileID: 6601152193478454750, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -64,8 +68,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8760979284909740984, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760979284909740984, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760979284909740984, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760979284909740984, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8760979284909740984, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.33
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
+--- !u!1 &9005289289258721505 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2260156496562965025, guid: 65f1e1a206d89ac40af7cef73593e5d0, type: 3}
+  m_PrefabInstance: {fileID: 7180011858072971968}
+  m_PrefabAsset: {fileID: 0}

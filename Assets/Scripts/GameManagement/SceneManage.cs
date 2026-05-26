@@ -5,6 +5,13 @@ public class SceneManage : MonoBehaviour
 {
     public static SceneManage Instance { get; private set; }
 
+    [Header("Music Themes")]
+    [SerializeField] private AudioClip mainMenuTheme;
+    [SerializeField] private AudioClip levelTheme;
+    [SerializeField] private AudioClip gameOverSound;
+    
+    [SerializeField] private AudioClip levelCompletedSound;
+
     // Nivel actual del jugador (1..6), visible y editable en el Inspector
     [SerializeField]
     private int currentLevel = 1;
@@ -55,6 +62,11 @@ public class SceneManage : MonoBehaviour
 
         Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
+
+        if (sceneName == "MainMenu")
+        {
+            PlayMusic(mainMenuTheme, true);
+        }
     }
 
     public void LoadCustomLevel(int levelNumber)
@@ -63,6 +75,7 @@ public class SceneManage : MonoBehaviour
         UpdateNextLevelVar();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Level" + currentLevel);
+        PlayMusic(levelTheme, true);
         ShowLevelIntroForCurrentLevel();
     }
 
@@ -75,6 +88,7 @@ public class SceneManage : MonoBehaviour
             UpdateNextLevelVar();
             Time.timeScale = 1f;
             SceneManager.LoadScene("Level" + currentLevel);
+            PlayMusic(levelTheme, true);
             ShowLevelIntroForCurrentLevel();
         }
         else
@@ -90,6 +104,7 @@ public class SceneManage : MonoBehaviour
         UpdateNextLevelVar();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Level" + currentLevel);
+        PlayMusic(levelTheme, true);
         ShowLevelIntroForCurrentLevel();
     }
 
@@ -118,6 +133,15 @@ public class SceneManage : MonoBehaviour
         Time.timeScale = 0f;
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         Debug.Log($"SceneManage: {sceneName} loaded additively");
+
+        if (sceneName == "PauseMenu")
+        {
+            PauseMusic();
+        }
+        else if (sceneName == "GameOver")
+        {
+            PlayMusic(gameOverSound, false);
+        }
     }
 
     // Descarga una escena cargada de forma aditiva y reanuda el juego.
@@ -137,6 +161,11 @@ public class SceneManage : MonoBehaviour
         }
         SceneManager.UnloadSceneAsync(sceneName);
         Debug.Log($"SceneManage: {sceneName} unload requested");
+
+        if (sceneName == "PauseMenu")
+        {
+            ResumeMusic();
+        }
     }
 
     private string GetLevelIntroSceneName(int levelNumber)
@@ -155,5 +184,38 @@ public class SceneManage : MonoBehaviour
     {
         currentLevel = Mathf.Clamp(currentLevel, 1, maxLevel);
         nextLevel = Mathf.Clamp(nextLevel, 1, maxLevel);
+    }
+
+    private void PlayMusic(AudioClip clip, bool loop)
+    {
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError("SceneManage: AudioManager.Instance is null");
+            return;
+        }
+
+        AudioManager.Instance.PlayMusic(clip, loop);
+    }
+
+    private void PauseMusic()
+    {
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError("SceneManage: AudioManager.Instance is null");
+            return;
+        }
+
+        AudioManager.Instance.PauseMusic();
+    }
+
+    private void ResumeMusic()
+    {
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError("SceneManage: AudioManager.Instance is null");
+            return;
+        }
+
+        AudioManager.Instance.ResumeMusic();
     }
 }
