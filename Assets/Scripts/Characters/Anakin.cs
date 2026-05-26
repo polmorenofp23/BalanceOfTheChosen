@@ -33,7 +33,7 @@ public class Anakin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void FixedUpdate()
@@ -55,6 +55,21 @@ public class Anakin : MonoBehaviour
         bool isInAir = Mathf.Abs(rb.linearVelocity.y) > 0.01f;
         float horizontalSpeed = Mathf.Abs(moveInput.x * moveSpeed);
         animator.speed = !isInAir && horizontalSpeed > 0f ? horizontalSpeed : 1f;
+
+        if (!isInAir && horizontalSpeed > 0f)
+        {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlayWalk();
+            }
+        }
+        else
+        {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.StopWalk();
+            }
+        }
 
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
         if (jumpPressed)
@@ -86,6 +101,11 @@ public class Anakin : MonoBehaviour
         {
             if (collision.GetContact(i).normal.y > 0.5f)
             {
+                if (!isGrounded && SoundManager.Instance != null)
+                {
+                    SoundManager.Instance.PlayLand();
+                }
+
                 isGrounded = true;
                 break;
             }
@@ -96,11 +116,21 @@ public class Anakin : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ObjectsCollectibles"))
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlayHologram();
+            }
+
             hologramCollected = true;
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.CompareTag("ObjectCollectibleBlue") || collision.gameObject.CompareTag("ObjectCollectiblePurple"))
         {
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlayCrystal();
+            }
+
             if (collision.gameObject.CompareTag("ObjectCollectibleBlue"))
             {
                 blueKyberCrystalsCollected++;

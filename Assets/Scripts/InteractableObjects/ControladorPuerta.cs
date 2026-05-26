@@ -16,15 +16,12 @@ public class ControladorPuerta : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool jugadorEnPosicion = false;
 
-    // MAGIA MULTIJUGADOR: Al ser 'static', esta variable es compartida por TODAS las puertas
     public static int puertasListas = 0;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = puertaCerrada;
-
-        // Es vital resetear esto a 0 al empezar el nivel por si se reinicia la partida
         puertasListas = 0;
     }
 
@@ -49,14 +46,17 @@ public class ControladorPuerta : MonoBehaviour
 
                 if (cristalesDelJugador >= cristalesNecesarios)
                 {
-                    // El jugador ha cumplido y está en la puerta
                     jugadorEnPosicion = true;
-                    puertasListas++; // Sumamos 1 al contador global
+                    puertasListas++;
                     spriteRenderer.sprite = puertaAbierta;
+
+                    if (SoundManager.Instance != null)
+                    {
+                        SoundManager.Instance.PlayDoor();
+                    }
 
                     Debug.Log("Jugador en la puerta " + colorPuerta + ". Puertas listas: " + puertasListas);
 
-                    // Si ambas puertas están listas, iniciamos la carga
                     if (puertasListas >= 2)
                     {
                         Debug.Log("¡Ambos jugadores listos! Cargando siguiente nivel...");
@@ -71,17 +71,19 @@ public class ControladorPuerta : MonoBehaviour
         }
     }
 
-    // NUEVO: Si el jugador se aleja de la puerta, cancelamos su estado de "listo"
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Characters") && jugadorEnPosicion)
         {
             jugadorEnPosicion = false;
-            puertasListas--; // Restamos 1 al contador global
+            puertasListas--;
             spriteRenderer.sprite = puertaCerrada;
-
-            // Cancelamos la cuenta atrás de carga de nivel por si el otro jugador ya estaba dentro
             CancelInvoke(nameof(CargarSiguienteNivel));
+
+            if (SoundManager.Instance != null)
+            {
+                SoundManager.Instance.PlayDoorClose();
+            }
 
             Debug.Log("Jugador abandonó la puerta " + colorPuerta + ". Puertas listas: " + puertasListas);
         }
@@ -89,7 +91,6 @@ public class ControladorPuerta : MonoBehaviour
 
     void CargarSiguienteNivel()
     {
-        // Doble comprobación de seguridad antes de cargar
         if (puertasListas >= 2)
         {
             SceneManager.LoadScene(nombreSiguienteEscena);
