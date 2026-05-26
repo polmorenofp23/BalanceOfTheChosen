@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7318798828906616841}
   - component: {fileID: 3577186673875805923}
   - component: {fileID: 6205448315634660039}
-  - component: {fileID: 7566464204067970855}
   m_Layer: 5
   m_Name: PauseButton
   m_TagString: Untagged
@@ -122,9 +121,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7566464204067970855}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SceneManage, Assembly-CSharp
-        m_MethodName: ShowPauseMenu
+        m_MethodName: 
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -134,18 +133,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7566464204067970855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014933077427815836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8157364335fcca64185cc6415105b629, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneManage
 --- !u!1 &8567446940271529608
 GameObject:
   m_ObjectHideFlags: 0

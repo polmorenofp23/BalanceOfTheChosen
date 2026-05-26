@@ -132,15 +132,20 @@ public class Anakin : MonoBehaviour
         {
             isDead = true;
             animator.SetTrigger(DieParam);
-            Invoke(nameof(LoadGameOver), 0.25f);
+            Invoke(nameof(ShowGameOver), 2f);
         }
     }
 
-    void LoadGameOver()
+    void ShowGameOver()
     {
-        SceneManager.LoadScene("GameOver");
+        if (SceneManage.Instance != null)
+        {
+            SceneManage.Instance.ShowCustomScene("GameOver");
+        }
+        else
+        {
+            Debug.LogError("Anakin: SceneManage.Instance is null when trying to load GameOver");
+        }
         Debug.Log("Player has died");
-        Destroy(gameObject);
     }
 }
-

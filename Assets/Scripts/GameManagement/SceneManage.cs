@@ -45,40 +45,25 @@ public class SceneManage : MonoBehaviour
     }
 
     // Loads the first level
-    public void LoadFirstLevel()
+    public void LoadCustomScene(string sceneName)
     {
-        currentLevel = 1;
-        UpdateNextLevelVar();
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Level1"); // , LoadSceneMode.Additive para añadir el contenido de la escena sin eliminar lo anterior
-    }
+        if (string.IsNullOrWhiteSpace(sceneName))
+        {
+            Debug.LogError("SceneManage: LoadCustomScene called with an empty scene name");
+            return;
+        }
 
-    public void LoadMainMenu()
-    {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
-    }
-
-    public void LoadCustomScene (string sceneName)
-    {
         SceneManager.LoadScene(sceneName);
     }
 
-    public void LoadCustomLevel (string levelName)
+    public void LoadCustomLevel(int levelNumber)
     {
-        // Si el nombre sigue el patrón "LevelN", intentamos actualizar currentLevel
-        if (levelName.StartsWith("Level"))
-        {
-            string num = levelName.Substring(5);
-            int parsed;
-            if (int.TryParse(num, out parsed))
-            {
-                currentLevel = Mathf.Clamp(parsed, 1, maxLevel);
-                UpdateNextLevelVar();
-            }
-        }
+        currentLevel = Mathf.Clamp(levelNumber, 1, maxLevel);
+        UpdateNextLevelVar();
         Time.timeScale = 1f;
-        SceneManager.LoadScene(levelName);
+        SceneManager.LoadScene("Level" + currentLevel);
+        ShowLevelIntroForCurrentLevel();
     }
 
     // Carga el siguiente nivel si existe (usa la variable currentLevel)
@@ -90,6 +75,7 @@ public class SceneManage : MonoBehaviour
             UpdateNextLevelVar();
             Time.timeScale = 1f;
             SceneManager.LoadScene("Level" + currentLevel);
+            ShowLevelIntroForCurrentLevel();
         }
         else
         {
@@ -98,93 +84,72 @@ public class SceneManage : MonoBehaviour
         }
     }
 
-    // Forzar un nivel concreto por número (1..6)
-    public void LoadLevelByNumber(int levelNumber)
+    public void ReloadCurrentLevel()
     {
-        currentLevel = Mathf.Clamp(levelNumber, 1, maxLevel);
+        currentLevel = Mathf.Clamp(currentLevel, 1, maxLevel);
         UpdateNextLevelVar();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Level" + currentLevel);
+        ShowLevelIntroForCurrentLevel();
     }
+
+    public void HideCurrentLevelIntro()
+    {
+        HideCustomScene(GetLevelIntroSceneName(currentLevel));
+    }
+
 
     // --- Pausa y Game Over --- ADDITIVE SCENES MANAGEMENT ---
-    // Muestra el menú de pausa cargando la escena correspondiente en modo aditivo y detiene el tiempo
-    public void ShowPauseMenu()
+    // Carga una escena de forma aditiva, manteniendo la escena actual visible por detrás.
+    public void ShowCustomScene(string sceneName)
     {
-        Debug.Log("SceneManage: ShowPauseMenu() called");
-        if (SceneManager.GetSceneByName("PauseMenu").isLoaded)
+        if (string.IsNullOrWhiteSpace(sceneName))
         {
-            Debug.Log("SceneManage: PauseMenu is already loaded, skipping duplicate load");
-            Time.timeScale = 0f;
+            Debug.LogError("SceneManage: ShowCustomScene called with an empty scene name");
             return;
         }
+
+        if (SceneManager.GetSceneByName(sceneName).isLoaded)
+        {
+            Debug.Log($"SceneManage: {sceneName} is already loaded, skipping duplicate load");
+            return;
+        }
+
         Time.timeScale = 0f;
-        SceneManager.LoadScene("PauseMenu", LoadSceneMode.Additive);
-        Debug.Log("SceneManage: PauseMenu loaded additively");
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
+        Debug.Log($"SceneManage: {sceneName} loaded additively");
     }
 
-    // Oculta el menú de pausa y reanuda el juego
-    public void HidePauseMenu()
+    // Descarga una escena cargada de forma aditiva y reanuda el juego.
+    public void HideCustomScene(string sceneName)
     {
-        Debug.Log("SceneManage: HidePauseMenu() called");
+        if (string.IsNullOrWhiteSpace(sceneName))
+        {
+            Debug.LogError("SceneManage: HideCustomScene called with an empty scene name");
+            return;
+        }
+
         Time.timeScale = 1f;
-        if (!SceneManager.GetSceneByName("PauseMenu").isLoaded)
+        if (!SceneManager.GetSceneByName(sceneName).isLoaded)
         {
-            Debug.Log("SceneManage: PauseMenu was not loaded, nothing to unload");
+            Debug.Log($"SceneManage: {sceneName} was not loaded, nothing to unload");
             return;
         }
-        SceneManager.UnloadSceneAsync("PauseMenu");
-        Debug.Log("SceneManage: PauseMenu unload requested");
+        SceneManager.UnloadSceneAsync(sceneName);
+        Debug.Log($"SceneManage: {sceneName} unload requested");
     }
 
-    // Muestra el menú de game over y detiene el tiempo
-    public void ShowGameOver()
+    private string GetLevelIntroSceneName(int levelNumber)
     {
-        Debug.Log("SceneManage: ShowGameOver() called");
-        if (SceneManager.GetSceneByName("GameOver").isLoaded)
-        {
-            Debug.Log("SceneManage: GameOver is already loaded, skipping duplicate load");
-            Time.timeScale = 0f;
-            return;
-        }
-        Time.timeScale = 0f;
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Additive);
-        Debug.Log("SceneManage: GameOver loaded additively");
+        int clampedLevel = Mathf.Clamp(levelNumber, 1, maxLevel);
+        return $"Level{clampedLevel}Intro";
     }
 
-    // Reinicia el estado de tiempo si es necesario (por ejemplo al reiniciar desde game over)
-    public void HideGameOver()
+    private void ShowLevelIntroForCurrentLevel()
     {
-        Debug.Log("SceneManage: HideGameOver() called");
-        Time.timeScale = 1f;
-        if (!SceneManager.GetSceneByName("GameOver").isLoaded)
-        {
-            Debug.Log("SceneManage: GameOver was not loaded, nothing to unload");
-            return;
-        }
-        SceneManager.UnloadSceneAsync("GameOver");
-        Debug.Log("SceneManage: GameOver unload requested");
+        ShowCustomScene(GetLevelIntroSceneName(currentLevel));
     }
 
-    public void ShowCustomMenu (string menuName)
-    {
-        if (SceneManager.GetSceneByName(menuName).isLoaded)
-        {
-            Debug.Log($"SceneManage: {menuName} is already loaded, skipping duplicate load");
-            return;
-        }
-        SceneManager.LoadScene(menuName, LoadSceneMode.Additive);
-    }
-
-     public void HideCustomMenu (string menuName)
-    {
-        if (!SceneManager.GetSceneByName(menuName).isLoaded)
-        {
-            Debug.Log($"SceneManage: {menuName} was not loaded, nothing to unload");
-            return;
-        }
-        SceneManager.UnloadSceneAsync(menuName);
-    }
 
     private void OnValidate()
     {

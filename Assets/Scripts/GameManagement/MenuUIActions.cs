@@ -6,7 +6,7 @@ public class MenuUIActions : MonoBehaviour
     {
         if (SceneManage.Instance != null)
         {
-            SceneManage.Instance.LoadFirstLevel();
+            SceneManage.Instance.LoadCustomLevel(1);
         }
         else
         {
@@ -14,11 +14,83 @@ public class MenuUIActions : MonoBehaviour
         }
     }
 
-    public void LoadMainMenu()
+    public void LoadCustomScene(string sceneName)
     {
         if (SceneManage.Instance != null)
         {
-            SceneManage.Instance.LoadMainMenu();
+            SceneManage.Instance.LoadCustomScene(sceneName);
+        }
+        else
+        {
+            Debug.LogError("MenuUIActions: SceneManage.Instance is null");
+        }
+    }
+
+    public void LoadCustomLevel(int levelNumber)
+    {
+        if (SceneManage.Instance != null)
+        {
+            SceneManage.Instance.LoadCustomLevel(levelNumber);
+        }
+        else
+        {
+            Debug.LogError("MenuUIActions: SceneManage.Instance is null");
+        }
+    }
+
+    public void ReloadCurrentLevel()
+    {
+        if (SceneManage.Instance != null)
+        {
+            SceneManage.Instance.ReloadCurrentLevel();
+        }
+        else
+        {
+            Debug.LogError("MenuUIActions: SceneManage.Instance is null");
+        }
+    }
+
+    public void LoadNextLevel()
+    {
+        if (SceneManage.Instance != null)
+        {
+            SceneManage.Instance.LoadNextLevel();
+        }
+        else
+        {
+            Debug.LogError("MenuUIActions: SceneManage.Instance is null");
+        }
+    }
+
+    public void ContinueFromLevelIntro()
+    {
+        if (SceneManage.Instance != null)
+        {
+            SceneManage.Instance.HideCurrentLevelIntro();
+        }
+        else
+        {
+            Debug.LogError("MenuUIActions: SceneManage.Instance is null");
+        }
+    }
+
+    public void ShowCustomScene(string sceneName)
+    {
+        if (SceneManage.Instance != null)
+        {
+            SceneManage.Instance.ShowCustomScene(sceneName);
+        }
+        else
+        {
+            Debug.LogError("MenuUIActions: SceneManage.Instance is null");
+        }
+    }
+
+    public void HideCustomScene(string sceneName)
+    {
+        if (SceneManage.Instance != null)
+        {
+            SceneManage.Instance.HideCustomScene(sceneName);
         }
         else
         {
@@ -30,7 +102,7 @@ public class MenuUIActions : MonoBehaviour
     {
         if (SceneManage.Instance != null)
         {
-            SceneManage.Instance.ShowPauseMenu();
+            SceneManage.Instance.ShowCustomScene("PauseMenu");
         }
         else
         {
@@ -42,7 +114,7 @@ public class MenuUIActions : MonoBehaviour
     {
         if (SceneManage.Instance != null)
         {
-            SceneManage.Instance.HidePauseMenu();
+            SceneManage.Instance.HideCustomScene("PauseMenu");
         }
         else
         {
@@ -54,7 +126,7 @@ public class MenuUIActions : MonoBehaviour
     {
         if (SceneManage.Instance != null)
         {
-            SceneManage.Instance.ShowGameOver();
+            SceneManage.Instance.ShowCustomScene("GameOver");
         }
         else
         {
@@ -66,31 +138,7 @@ public class MenuUIActions : MonoBehaviour
     {
         if (SceneManage.Instance != null)
         {
-            SceneManage.Instance.HideGameOver();
-        }
-        else
-        {
-            Debug.LogError("MenuUIActions: SceneManage.Instance is null");
-        }
-    }
-
-    public void LoadLevel1()
-    {
-        if (SceneManage.Instance != null)
-        {
-            SceneManage.Instance.LoadLevelByNumber(1);
-        }
-        else
-        {
-            Debug.LogError("MenuUIActions: SceneManage.Instance is null");
-        }
-    }
-
-    public void LoadLevel2()
-    {
-        if (SceneManage.Instance != null)
-        {
-            SceneManage.Instance.LoadLevelByNumber(2);
+            SceneManage.Instance.HideCustomScene("GameOver");
         }
         else
         {

@@ -6,7 +6,7 @@ public class BootstrapLoader : MonoBehaviour
     {
         if (SceneManage.Instance != null)
         {
-            SceneManage.Instance.LoadMainMenu();
+            SceneManage.Instance.LoadCustomScene("MainMenu");
         }
         else
         {
