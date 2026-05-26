@@ -7,7 +7,7 @@ public class ControladorPuerta : MonoBehaviour
     [Tooltip("Escribe 'Azul' o 'Morado' según la puerta")]
     public string colorPuerta = "Azul";
     public int cristalesNecesarios = 4;
-    public string nombreSiguienteEscena = "MenuPrincipal";
+    public string nombreSiguienteEscena = "LevelCompleted";
 
     [Header("Gráficos")]
     public Sprite puertaCerrada;

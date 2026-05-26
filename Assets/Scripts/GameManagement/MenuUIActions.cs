@@ -1,7 +1,21 @@
 using UnityEngine;
+using TMPro; // Necesario para TextMeshPro
 
 public class MenuUIActions : MonoBehaviour
 {
+    [Header("Referencias de Texto Dinámico (Opcional)")]
+    [Tooltip("Arrastra aquí el texto de Nivel Completado. Déjalo vacío en otros menús.")]
+    public TextMeshProUGUI textoNivelCompletado;
+
+    private void Start()
+    {
+        // Solo actualizará el texto si le hemos asignado un elemento en el Inspector
+        if (textoNivelCompletado != null && SceneManage.Instance != null)
+        {
+            textoNivelCompletado.text = "Nivel " + SceneManage.Instance.CurrentLevel + " completado!";
+        }
+    }
+
     public void StartGame()
     {
         if (SceneManage.Instance != null)

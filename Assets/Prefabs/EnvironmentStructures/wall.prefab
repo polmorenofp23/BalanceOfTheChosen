@@ -49,6 +49,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2122193086914054159, guid: 551d79c0a717bbe4aa786c99efe93b54, type: 3}
+      propertyPath: m_Size.x
+      value: 0.57006615
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122193086914054159, guid: 551d79c0a717bbe4aa786c99efe93b54, type: 3}
+      propertyPath: m_Size.y
+      value: 1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122193086914054159, guid: 551d79c0a717bbe4aa786c99efe93b54, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122193086914054159, guid: 551d79c0a717bbe4aa786c99efe93b54, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2122193086914054159, guid: 551d79c0a717bbe4aa786c99efe93b54, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.57006615
       objectReference: {fileID: 0}
@@ -58,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7726205335639664456, guid: 551d79c0a717bbe4aa786c99efe93b54, type: 3}
       propertyPath: m_Name
-      value: rock Variant
+      value: wall
       objectReference: {fileID: 0}
     - target: {fileID: 8116842382694140975, guid: 551d79c0a717bbe4aa786c99efe93b54, type: 3}
       propertyPath: m_Sprite

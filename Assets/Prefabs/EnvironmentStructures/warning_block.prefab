@@ -10,12 +10,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 56859064823797906, guid: bba4da5b70987c849bb000d8b3734f46, type: 3}
       propertyPath: m_Name
-      value: plataforma3 Variant
+      value: warning_block
       objectReference: {fileID: 0}
     - target: {fileID: 1969813501853774837, guid: bba4da5b70987c849bb000d8b3734f46, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -3402431689723566831, guid: 6d34b957d74dbd946bd07e488094e5ae, type: 3}
+    - target: {fileID: 8539234511100032981, guid: bba4da5b70987c849bb000d8b3734f46, type: 3}
+      propertyPath: m_Size.x
+      value: 1.750203
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539234511100032981, guid: bba4da5b70987c849bb000d8b3734f46, type: 3}
+      propertyPath: m_Size.y
+      value: 1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539234511100032981, guid: bba4da5b70987c849bb000d8b3734f46, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8539234511100032981, guid: bba4da5b70987c849bb000d8b3734f46, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8539234511100032981, guid: bba4da5b70987c849bb000d8b3734f46, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1.750203

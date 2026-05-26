@@ -113,7 +113,7 @@ MonoBehaviour:
   purpleKyberCrystalsCollected: 0
   hologramCollected: 0
   moveSpeed: 5
-  jumpForce: 5
+  jumpForce: 6
   rb: {fileID: 6210563377321208328}
   moveInput: {x: 0, y: 0}
   jumpPressed: 0

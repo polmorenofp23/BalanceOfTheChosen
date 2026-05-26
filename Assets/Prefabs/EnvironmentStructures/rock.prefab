@@ -9,6 +9,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 86345242760436711, guid: 4bd38560b71f5b843bda6fb1a14e5bab, type: 3}
+      propertyPath: m_Size.x
+      value: 0.79009163
+      objectReference: {fileID: 0}
+    - target: {fileID: 86345242760436711, guid: 4bd38560b71f5b843bda6fb1a14e5bab, type: 3}
+      propertyPath: m_Size.y
+      value: 0.82000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 86345242760436711, guid: 4bd38560b71f5b843bda6fb1a14e5bab, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.79009163
       objectReference: {fileID: 0}
@@ -62,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 4933313068301109233, guid: 6d34b957d74dbd946bd07e488094e5ae, type: 3}
     - target: {fileID: 8609113396342502560, guid: 4bd38560b71f5b843bda6fb1a14e5bab, type: 3}
       propertyPath: m_Name
-      value: warning_block Variant
+      value: rock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -113,7 +113,7 @@ MonoBehaviour:
   purpleKyberCrystalsCollected: 0
   hologramCollected: 0
   moveSpeed: 5
-  jumpForce: 5
+  jumpForce: 6
   rb: {fileID: 2702086941630892892}
   moveInput: {x: 0, y: 0}
   jumpPressed: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 0f70a9a2-02b4-472c-8bd0-25656b40e1b6
+  m_DefaultActionMap: Vader
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!95 &3629418750065212022

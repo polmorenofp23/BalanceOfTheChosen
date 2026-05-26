@@ -19,7 +19,7 @@ public class Anakin : MonoBehaviour
     private static readonly int DieParam = Animator.StringToHash("Die");
 
     public float moveSpeed = 5f;
-    public float jumpForce = 5f;
+    public float jumpForce = 6f;
     public Rigidbody2D rb;
     public Vector2 moveInput;
     public bool jumpPressed = false;

@@ -17,6 +17,22 @@ PrefabInstance:
       value: plataforma2
       objectReference: {fileID: 0}
     - target: {fileID: 7444010261849679899, guid: 119b11acff0f69441be8020210c9bc8f, type: 3}
+      propertyPath: m_Size.x
+      value: 1.750203
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444010261849679899, guid: 119b11acff0f69441be8020210c9bc8f, type: 3}
+      propertyPath: m_Size.y
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444010261849679899, guid: 119b11acff0f69441be8020210c9bc8f, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444010261849679899, guid: 119b11acff0f69441be8020210c9bc8f, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7444010261849679899, guid: 119b11acff0f69441be8020210c9bc8f, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1.750203
       objectReference: {fileID: 0}
